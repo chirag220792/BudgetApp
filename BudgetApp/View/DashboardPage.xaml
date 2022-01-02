@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:vm="clr-namespace:BudgetApp.ViewModel"
+    mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{DynamicResource PrimaryColor}"
+    x:Class="BudgetApp.View.DashboardPage">
+
+    <ContentPage.BindingContext>
+        <vm:DashboardViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid RowDefinitions="Auto, Auto, Auto, *" Padding="25" RowSpacing="25">
+            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                <ImageButton BackgroundColor="Transparent" Source="menu.png" WidthRequest="18" HeightRequest="18" VerticalOptions="Center" Clicked="MenuTapped"/>
+                <Label Grid.Column="1" Text="DASHBOARD" TextColor="{DynamicResource TertiaryColor}" VerticalOptions="Center" FontSize="18" FontFamily="NormalFont"/>
+            </Grid>
+            <pv:PancakeView Grid.Row="1" CornerRadius="15" BackgroundColor="{DynamicResource SecondaryColor}" HeightRequest="215" Margin="0,50,0,0">
+                <Grid ColumnDefinitions="*, *" RowDefinitions="*, 1.2*">
+                    <StackLayout Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="Current Balance" HorizontalOptions="Center" FontSize="14" TextColor="White" FontFamily="NormalFont"/>
+                        <Label Text="$21,500.00" HorizontalOptions="Center" FontSize="25" TextColor="White" FontFamily="BoldFont"/>
+                    </StackLayout>
+                    <pv:PancakeView Grid.Row="1" Padding="15" CornerRadius="15" BackgroundColor="{DynamicResource OffWhiteColor}">
+                        <StackLayout Spacing="10">
+                            <Ellipse Style="{StaticResource DotEllipse}" Stroke="{DynamicResource SkyBlueColor}"/>
+                            <Label Text="$7,500.90" FontFamily="LightFont" TextColor="#2C2A57"/>
+                            <Label Text="Income this month" TextColor="#2C2A57" FontSize="12" WidthRequest="70" HorizontalOptions="Start"/>
+                        </StackLayout>
+                    </pv:PancakeView>
+                    <pv:PancakeView Grid.Row="1" Grid.Column="1" Padding="15" CornerRadius="15" BackgroundColor="{DynamicResource OffWhiteColor}">
+                        <StackLayout Spacing="10">
+                            <Ellipse Style="{StaticResource DotEllipse}" Stroke="{DynamicResource OrangeColor}"/>
+                            <StackLayout Spacing="5">
+                                <Label Text="$600.90" FontSize="20" FontFamily="LightFont" TextColor="#2C2A57"/>
+                                <Label Text="Expenses this month" TextColor="#2C2A57" FontSize="12" WidthRequest="80" HorizontalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </pv:PancakeView>
+                </Grid>
+            </pv:PancakeView>
+            <pv:PancakeView Grid.Row="2" Padding="10,5" CornerRadius="10" HeightRequest="40" BackgroundColor="White">
+                <Grid ColumnDefinitions="*, Auto">
+                    <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                        <Image Source="info" VerticalOptions="Center" WidthRequest="28" HeightRequest="28"/>
+                        <Label Text="You're running out of budget!" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <Path Fill="{DynamicResource TertiaryColor}" Grid.Column="1" VerticalOptions="Center"
+                      Data="M14.331,10.056l-2.922-2.92a.55.55,0,0,1,0-.779.556.556,0,0,1,.782,0L15.5,9.665a.551.551,0,0,1,.016.761l-3.324,3.331a.552.552,0,1,1-.782-.779Z"/>
+                </Grid>
+            </pv:PancakeView>
+            <CollectionView Grid.Row="3">
+                <CollectionView.Header>
+                    <Label Text="ACTIVITIES" TextColor="{DynamicResource TertiaryColor}" FontSize="12" FontFamily="NormalFont"/>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid  ColumnDefinitions="Auto, 2*, *" VerticalOptions="Start" ColumnSpacing="12">
+                            <Ellipse Style="{StaticResource DotEllipse}" Stroke="{DynamicResource OrangeColor}" VerticalOptions="Center"/>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="UI/UX Design" TextColor="White" FontSize="14" FontFamily="NormalFont"/>
+                                <Label Text="Tuesday, June 30, 2020" TextColor="White" Opacity="0.65" FontSize="12" FontFamily="NormalFont"
+                       Margin="0,-5,0,0"/>
+                            </StackLayout>
+                            <Label Grid.Column="2" Text="+$3,200.00" FontSize="14" FontFamily="MediumFont" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+        <Grid x:Name="MenuGrid" IsVisible="False">
+            <BoxView x:Name="MenuOverlay" BackgroundColor="Black" Opacity="0.35">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OverlayTapped"/>
+                </BoxView.GestureRecognizers>
+                </BoxView>
+            <Grid x:Name="MenuView" WidthRequest="260" BackgroundColor="{DynamicResource PrimaryColor}" HorizontalOptions="Start" TranslationX="-260">
+                <StackLayout Margin="30,200" Spacing="20" BindableLayout.ItemsSource="{Binding MenuList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Spacing="20">
+                        <Grid Grid.Row="2" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="{DynamicResource TertiaryColor}" HeightRequest="46" WidthRequest="46">
+                        <Grid.Clip>
+                            <EllipseGeometry RadiusX="23" RadiusY="23" Center="23,23"/>
+                        </Grid.Clip>
+                        <Image Source="{Binding Icon}" Aspect="AspectFill" WidthRequest="22" HeightRequest="22" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Grid>
+                        <Label Text="{Binding Name}" TextColor="White" FontSize="16" VerticalOptions="Center" FontFamily="NormalFont"/>
+                    </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
