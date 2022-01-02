@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BudgetApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#341E9D</Color>
+            <Color x:Key="SecondaryColor">#3F32C7</Color>
+            <Color x:Key="TertiaryColor">#887DF8</Color>
+
+            <Color x:Key="OffWhiteColor">#F9F9F9</Color>
+            <Color x:Key="OrangeColor">#FFC44B</Color>
+            <Color x:Key="SkyBlueColor">#21C8ED</Color>
+
+            <Style x:Key="DotEllipse" TargetType="Ellipse">
+                <Setter Property="HeightRequest" Value="12"/>
+                <Setter Property="WidthRequest" Value="12"/>
+                <Setter Property="StrokeThickness" Value="3"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+            </Style>
+
+            <Style x:Key="EntryFrame" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="Padding" Value="15,0"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="{DynamicResource SecondaryColor}"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
