@@ -19,7 +19,7 @@
                         HeightRequest="95" Margin="0,25,0,0" Padding="10">
             <Grid ColumnDefinitions="*, Auto" Padding="30,0">
                 <StackLayout HorizontalOptions="Start" VerticalOptions="Center">
-                    <Label Text="Total Expenses" HorizontalOptions="Center"
+                    <Label Text="Total Budgets" HorizontalOptions="Center"
                            FontSize="14" TextColor="White" FontFamily="NormalFont"/>
                     <Label Text="$620.11" HorizontalOptions="Center"
                            FontSize="25" TextColor="White" FontFamily="BoldFont"/>

@@ -15,7 +15,7 @@ namespace BudgetApp
         {
             InitializeComponent();
             Device.SetFlags(new[] { "Shapes_Experimental", "SwipeView_Experimental" });
-            MainPage = new NavigationPage(new BudgetPage());
+            MainPage = new NavigationPage(new NewIncomeExpensePage());
         }
 
         protected override void OnStart()
