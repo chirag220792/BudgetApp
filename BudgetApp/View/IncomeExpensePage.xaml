@@ -76,7 +76,7 @@
         <Grid Grid.Row="2" HorizontalOptions="End" VerticalOptions="End" 
               BackgroundColor="{DynamicResource TertiaryColor}" HeightRequest="50" WidthRequest="50">
             <Grid.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding NewCommand}"/>
+                <TapGestureRecognizer Tapped="AddTapped"/>
             </Grid.GestureRecognizers>
             <Grid.Clip>
                 <EllipseGeometry RadiusX="25" RadiusY="25" Center="25,25"/>

@@ -5,5 +5,6 @@ namespace BudgetApp.Model
     {
         public string Name { get; set; }
         public string Icon { get; set; }
+        public Type TargetType { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using BudgetApp.Model;
 using Xamarin.Forms;
 
 namespace BudgetApp.View
@@ -36,6 +36,29 @@ namespace BudgetApp.View
         void OverlayTapped(System.Object sender, System.EventArgs e)
         {
             CloseMenu();
+        }
+
+        void MenuItemTapped(System.Object sender, System.EventArgs e)
+        {
+            var item = ((sender as StackLayout).BindingContext) as Model.Menu;
+
+            if (item.TargetType == typeof(IncomeExpensePage))
+            {
+                var transactionType = item.Name == "Expense" ? TransactionType.Expense : TransactionType.Income;
+                var page = (Page)Activator.CreateInstance(item.TargetType, transactionType);
+                Navigation.PushAsync(page);
+            }
+            else
+            {
+                var page = (Page)Activator.CreateInstance(item.TargetType);
+                Navigation.PushAsync(page);
+            }
+            CloseMenu();
+        }
+
+        void AddTapped(System.Object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new NewIncomeExpensePage(), true);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using BudgetApp.Model;
 using Xamarin.Forms;
 
 namespace BudgetApp.View
@@ -11,5 +11,13 @@ namespace BudgetApp.View
         {
             InitializeComponent();
         }
+
+        public NewIncomeExpensePage(TransactionType type)
+        {
+            InitializeComponent();
+            _type = type;
+        }
+
+        private TransactionType _type;
     }
 }
