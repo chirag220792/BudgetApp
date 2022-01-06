@@ -43,6 +43,12 @@
                                     <Entry Text="Coffee Beans" TextColor="#2C2A57" FontSize="14" FontFamily="MediumFont"/>
                                 </Frame>
                             </StackLayout>
+                            <StackLayout x:Name="CategoryView">
+                                <Label Text="Category" TextColor="#707070" FontSize="14" FontFamily="NormalFont"/>
+                                <Frame Style="{StaticResource EntryFrame}">
+                                    <Picker FontSize="14" FontFamily="NormalFont" ItemsSource="{Binding Category}" ItemDisplayBinding="{Binding Title}" SelectedIndex="{Binding CategoryIndex}"/>
+                                </Frame>
+                            </StackLayout>
                             <StackLayout>
                                 <Label Text="Description" TextColor="#707070" FontSize="14" FontFamily="NormalFont"/>
                                 <Frame Style="{StaticResource EntryFrame}">
