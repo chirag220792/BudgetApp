@@ -5,9 +5,14 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:vm="clr-namespace:BudgetApp.ViewModel"
     mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
     BackgroundColor="{DynamicResource PrimaryColor}"
     x:Class="BudgetApp.View.NewBudgetPage">
+    <ContentPage.BindingContext>
+        <vm:NewBudgetViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+
         <Grid RowDefinitions="Auto, *" Padding="25" RowSpacing="25">
         <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
             <ImageButton BackgroundColor="Transparent" Source="back.png" WidthRequest="18" HeightRequest="18" 
