@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Xamarin.Forms;
 
 namespace BudgetApp.Model

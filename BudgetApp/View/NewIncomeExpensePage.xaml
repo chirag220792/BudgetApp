@@ -18,29 +18,72 @@
         <ScrollView Grid.Row="1">
             <StackLayout Spacing="0">
                 <pv:PancakeView CornerRadius="15" BackgroundColor="White" 
-                        Margin="0,25,0,0" Padding="20">
+                         Margin="0,25,0,0" Padding="20">
                     <Grid RowDefinitions="Auto, Auto" RowSpacing="50">
-                        <pv:PancakeView HeightRequest="40" CornerRadius="23" Border="{DynamicResource SecondaryColor}">
-                            <Grid ColumnDefinitions="*, *" ColumnSpacing="0">
-                                <pv:PancakeView HeightRequest="40" CornerRadius="20" BackgroundColor="{DynamicResource SecondaryColor}">
-                                    <Label Text="Income" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="NormalFont" FontSize="14"/>
+                        <pv:PancakeView HeightRequest="40" CornerRadius="20"
+                                         Border="{pv:BorderMarkup Color={DynamicResource SecondaryColor}, Thickness='1'}">
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="0">
+                                <pv:PancakeView x:Name="IncomeTab" HeightRequest="40" Border="{pv:BorderMarkup Color=#ffffff00, Thickness='1'}" CornerRadius="20">
+                                    <pv:PancakeView.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="IncomeSelected"/>
+                                    </pv:PancakeView.GestureRecognizers>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="TabStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="{x:Null}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryColor}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Label x:Name="IncomeTabTxt" Text="Income" TextColor="#2C2A57" HorizontalOptions="Center" VerticalOptions="Center"
+                                           FontFamily="NormalFont" FontSize="14"/>
                                 </pv:PancakeView>
-                                <pv:PancakeView Grid.Column="1" HeightRequest="40" CornerRadius="20">
-                                    <Label Text="Expense" TextColor="#2C2A57" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="NormalFont" FontSize="14"/>
+                                <pv:PancakeView x:Name="ExpenseTab" Grid.Column="1" HeightRequest="40" Border="{pv:BorderMarkup Color=#ffffff00, Thickness='1'}" CornerRadius="20">
+                                    <pv:PancakeView.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ExpenseSelected"/>
+                                    </pv:PancakeView.GestureRecognizers>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="TabStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="{x:Null}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryColor}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Label x:Name="ExpenseTabTxt" Text="Expense" TextColor="#2C2A57" HorizontalOptions="Center" VerticalOptions="Center"
+                                           FontFamily="NormalFont" FontSize="14"/>
                                 </pv:PancakeView>
                             </Grid>
                         </pv:PancakeView>
-                        <StackLayout Grid.Row="1">
+                        <StackLayout Grid.Row="1" Margin="0,0,0,60">
                             <StackLayout>
                                 <Label Text="Title" TextColor="#707070" FontSize="14" FontFamily="NormalFont"/>
                                 <Frame Style="{StaticResource EntryFrame}">
-                                    <Entry Text="Coffee Beans" TextColor="#2C2A57" FontSize="14" FontFamily="MediumFont"/>
+                                    <Entry Text="{Binding Title}" TextColor="#2C2A57" FontSize="14" FontFamily="MediumFont"/>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="Amount" TextColor="#707070" FontSize="14" FontFamily="NormalFont"/>
+                                <Frame Style="{StaticResource EntryFrame}">
+                                    <Entry Text="{Binding Amount}" TextColor="#2C2A57" FontSize="14" FontFamily="MediumFont"/>
                                 </Frame>
                             </StackLayout>
                             <StackLayout>
                                 <Label Text="Date" TextColor="#707070" FontSize="14" FontFamily="NormalFont"/>
                                 <Frame Style="{StaticResource EntryFrame}">
-                                    <Entry Text="Coffee Beans" TextColor="#2C2A57" FontSize="14" FontFamily="MediumFont"/>
+                                    <DatePicker Date="{Binding TransactionDate}" TextColor="#2C2A57" FontSize="14" FontFamily="MediumFont"/>
                                 </Frame>
                             </StackLayout>
                             <StackLayout x:Name="CategoryView">
@@ -52,15 +95,15 @@
                             <StackLayout>
                                 <Label Text="Description" TextColor="#707070" FontSize="14" FontFamily="NormalFont"/>
                                 <Frame Style="{StaticResource EntryFrame}">
-                                    <Entry Text="Coffee Beans" TextColor="#2C2A57" FontSize="14" FontFamily="MediumFont"/>
+                                    <Entry Text="{Binding Description}" TextColor="#2C2A57" FontSize="14" FontFamily="MediumFont"/>
                                 </Frame>
                             </StackLayout>
-                            
                         </StackLayout>
                     </Grid>
                 </pv:PancakeView>
-                <Button Text="Save" TextColor="White" FontSize="14" FontFamily="NormalFont" WidthRequest="140" HeightRequest="40"
-                        CornerRadius="20" HorizontalOptions="Center" BackgroundColor="{DynamicResource SecondaryColor}" Margin="0,-20,0,0"/>
+                <Button Text="Save" TextColor="White" FontSize="14" FontFamily="NormalFont"
+                        WidthRequest="140" HeightRequest="40" CornerRadius="20" HorizontalOptions="Center"
+                        BackgroundColor="{DynamicResource SecondaryColor}" Margin="0,-20,0,0" Command="{Binding SaveCommand}"/>
             </StackLayout>
         </ScrollView>
     </Grid>
