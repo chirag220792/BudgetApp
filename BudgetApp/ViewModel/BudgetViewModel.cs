@@ -49,8 +49,8 @@ namespace BudgetApp.ViewModel
 
         private async void GetBudgets()
         {
-            var budgets = await service.GetBudgetsAsync();
-            Budgets = budgets.Where(x => x.DateCreated.Month == DateTime.Now.Month || x.Duration == Duration.Monthly).ToList();
+            //var budgets = await service.GetBudgetsAsync();
+            Budgets = service.QueryBudgets(x => x.DateCreated.Month == DateTime.Now.Month || x.Duration == Duration.Monthly).ToList();
         }
     }
 }
